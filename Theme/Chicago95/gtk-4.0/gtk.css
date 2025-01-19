@@ -1,0 +1,394 @@
+/*# name: Chicago95
+  # author: Grassmunk
+  # author: AdrianoML (rewrite/gtk 3.22 update)
+  # author: EMH-Mark-I (rewrite/gtk 3.22/3.24 update)
+  # GTK4 port: [Assistant] */
+
+/* Default color scheme - Windows 95 colors */
+@define-color bg_color #c0c0c0;            /* Window Theme: buttonface */
+@define-color fg_color #000000;            /* Windows Theme: windowtext */
+@define-color base_color #ffffff;
+@define-color text_color #000000;          /* Windows Theme: windowtext */
+@define-color selected_bg_color #000080;   /* Windows Theme: hilight */
+@define-color selected_fg_color #ffffff;   /* Windows Theme: hilighttext */
+@define-color selected_inactive_bg_color #808080;  /* Windows Theme: inactivetitle */
+@define-color selected_inactive_fg_color #c0c0c0;  /* Windows Theme: inactivetitletext */
+@define-color border_bright #ffffff;       /* Windows Theme: buttonlight */
+@define-color border_light #dfdfdf;        /* Windows Theme: buttonhilight */
+@define-color border_dark #000000;         /* Windows Theme: buttondkshadow */
+@define-color border_shade #808080;        /* Windows Theme: buttonshadow */
+@define-color window_title_bg_color @selected_bg_color;  /* Windows Theme: activetitle */
+@define-color window_title_text_color @selected_fg_color; /* Windows Theme: titletext */
+@define-color tooltip_bg_color #ffffe1;        /* Windows Theme: infowindow */
+@define-color tooltip_fg_color #000000;        /* Windows Theme: infotext */
+
+* {
+  -gtk-icon-style: regular;
+}
+
+/* Window styling */
+window {
+  background-color: @bg_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+window.csd {
+  border-radius: 0;
+  border: 1px solid @border_bright;
+}
+
+window.solid-csd {
+  border-radius: 0;
+  margin: 0;
+  border: 1px solid @border_bright;
+}
+
+/* Window decorations */
+decoration {
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid @border_bright;
+  background-color: @window_title_bg_color;
+}
+
+decoration:backdrop {
+  background-color: @selected_inactive_bg_color;
+  border: 1px solid @border_bright;
+}
+
+.titlebar {
+  height: 16px;
+  padding: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: @window_title_bg_color;
+  color: @window_title_text_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+.titlebar:backdrop {
+  background-color: @selected_inactive_bg_color;
+  color: @selected_inactive_fg_color;
+}
+
+headerbar {
+  height: 16px;
+  padding: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: @window_title_bg_color;
+  color: @window_title_text_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+headerbar:backdrop {
+  background-color: @selected_inactive_bg_color;
+  color: @selected_inactive_fg_color;
+}
+
+headerbar.titlebar {
+  height: 16px;
+  padding: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: @selected_bg_color;
+  color: @selected_fg_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+window.csd > headerbar {
+  padding: 0px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+/* Window title */
+.titlebar .title {
+  text-align: left;
+  padding: 0 4px;
+  color: @window_title_text_color;
+  font-weight: bold;
+}
+
+.titlebar .subtitle {
+  font-size: smaller;
+  padding: 0 4px;
+  color: @window_title_text_color;
+}
+
+/* Window controls */
+windowcontrols {
+  margin: 0;
+  padding: 2px;
+  border-spacing: 0;
+}
+
+windowcontrols.start {
+  margin-left: 2px;
+}
+
+windowcontrols.end {
+  margin-right: 2px;
+}
+
+windowcontrols > button {
+  max-height: 16px;
+  max-width: 16px;
+  padding: 2px;
+  margin: 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright @border_dark @border_dark @border_bright;
+  background-color: @bg_color;
+}
+
+windowcontrols > button:hover {
+  background-color: @bg_color;
+}
+
+windowcontrols > button:active {
+  border-color: @border_dark;
+}
+
+/* Standard buttons */
+button {
+    max-height: 16px;
+    max-width: 16px;
+    padding: 2px;
+    margin: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: @border_bright @border_dark @border_dark @border_bright;
+    background-color: @bg_color;
+}
+
+button:hover {
+  background-color: @bg_color;
+}
+
+button:active {
+  border-color: @border_dark;
+}
+
+/* Entry fields */
+entry {
+  background-color: @base_color;
+  color: @text_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_dark;
+  border-radius: 0;
+  padding: 2px;
+  min-height: 22px;
+}
+
+entry:focus {
+  background-color: @base_color;
+}
+
+/* Checkboxes and radio buttons */
+check, radio {
+  margin: 2px;
+  min-height: 13px;
+  min-width: 13px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_dark;
+  background-color: @base_color;
+}
+
+check:checked, radio:checked {
+  background-color: @base_color;
+}
+
+/* Scrollbars */
+scrollbar {
+  background-color: @bg_color;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+scrollbar slider {
+  min-width: 14px;
+  min-height: 14px;
+  margin: 1px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+  background-color: @bg_color;
+}
+
+scrollbar slider:hover {
+  background-color: @bg_color;
+}
+
+scrollbar slider:active {
+  border-color: @border_dark;
+  background-color: @bg_color;
+}
+
+/* Menu items */
+menubar {
+  background-color: @bg_color;
+  color: @text_color;
+  padding: 1px;
+}
+
+menuitem {
+  padding: 2px 4px;
+  color: @text_color;
+}
+
+menuitem:hover {
+  background-color: @selected_bg_color;
+  color: @selected_fg_color;
+}
+
+/* Lists and trees */
+list, treeview {
+  background-color: @base_color;
+  color: @text_color;
+}
+
+list row:selected, treeview row:selected {
+  background-color: @selected_bg_color;
+  color: @selected_fg_color;
+}
+
+list row:backdrop:selected, treeview row:backdrop:selected {
+  background-color: @selected_inactive_bg_color;
+  color: @selected_inactive_fg_color;
+}
+
+/* Additional GTK4 window decoration styles */
+window.csd > decoration {
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+window.csd.tiled > headerbar,
+window.csd.tiled-top > headerbar,
+window.csd.tiled-right > headerbar,
+window.csd.tiled-bottom > headerbar,
+window.csd.tiled-left > headerbar,
+window.csd.maximized > headerbar,
+window.csd.fullscreen > headerbar {
+  border-radius: 0;
+}
+
+window.csd.maximized decoration,
+window.csd.fullscreen decoration {
+  border-radius: 0;
+}
+
+.default-decoration.titlebar,
+.csd .default-decoration.titlebar {
+  max-height: 16px;
+  padding: 0;
+  margin: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_bright;
+}
+
+.titlebar .title {
+  padding: 0 8px;
+  color: @selected_fg_color;
+}
+
+.titlebar .subtitle {
+  font-size: smaller;
+  padding: 0 8px;
+  color: @selected_fg_color;
+}
+
+.titlebar .titlebutton {
+  max-width: 16px;
+  max-height: 16px;
+  margin: 6px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @border_light @border_dark @border_dark @border_light;
+  background-color: @bg_color;
+  color: @text_color;
+}
+
+.titlebar .titlebutton:backdrop {
+  background-color: @bg_color;
+  color: @selected_inactive_fg_color;
+}
+
+.titlebar .titlebutton:hover {
+  background-color: @bg_color;
+}
+
+.titlebar .titlebutton:active,
+.titlebar .titlebutton:checked {
+  border-color: @border_dark;
+}
+
+/* Window states */
+.maximized headerbar,
+.maximized .titlebar {
+  border-radius: 0;
+  border-top-width: 1px;
+  border-color: @border_bright;
+}
+
+.tiled headerbar,
+.tiled .titlebar {
+  border-radius: 0;
+  border-top-width: 1px;
+  border-color: @border_bright;
+}
+
+/* Tooltips */
+tooltip {
+  background-color: #ffffe1; /* Light yellow */
+  color: @tooltip_fg_color;
+  border: 1px solid @border_dark;
+  box-shadow: none;
+  padding: 2px;
+}
+
+tooltip * {
+  background-color: #ffffe1; /* Light yellow */
+  color: @tooltip_fg_color;
+}
+
+tooltip decoration {
+  background-color: #ffffe1; /* Light yellow */
+  border: none;
+}
+
+popover {
+    background-color: @tooltip_bg_color; /* Light yellow */
+    color: @tooltip_fg_color;
+    border: 1px solid @border_dark;
+    box-shadow: none;
+    padding: 2px;
+}
+
+popover * {
+    background-color: @tooltip_bg_color; /* Light yellow */
+    color: @tooltip_fg_color;
+}
+
+popover decoration {
+    background-color: @tooltip_bg_color; /* Light yellow */
+    border: none;
+}
